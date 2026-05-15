@@ -11,7 +11,7 @@ body {
 .chat-page {
   height: 100vh;
   width: 100vw;
-  background: #111318;
+  background: #0547ed;
   color: white;
   display: flex;
   flex-direction: column;
