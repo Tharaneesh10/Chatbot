@@ -187,7 +187,7 @@ function App() {
   return (
     <div className="chat-page">
       <div className="chat-header">
-        <h2>Alexa Chatbot</h2>
+        <h2>Alexa's Chatbot</h2>
         <p>{isListening ? "Listening..." : "Convai AI Assistant"}</p>
       </div>
 
