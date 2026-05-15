@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy React App to EC2
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Source
         uses: actions/checkout@v4
 
       - name: Setup SSH
@@ -21,11 +21,19 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-          
+
           cd /var/www/html
-          
+
           sudo git pull origin main
-          
+
+          npm install
+
+          npm run build
+
+          sudo rm -rf /var/www/html/*
+
+          sudo cp -r dist/* /var/www/html/
+
           sudo systemctl restart nginx
-          
+
           EOF
